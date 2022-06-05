@@ -1,0 +1,210 @@
+\documentclass[12pt,twocolumn,letterpaper]{article}
+\newcommand{\comment}[1]{}
+\usepackage{float}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{natbib}
+\bibliographystyle{unsrt}
+\title{
+		\usefont{OT1}{bch}{b}{n}
+		\normalfont \normalsize \textsc{STEM Fellowship Inter-University Big Data Challenge 2022} \\ [10pt]
+		\huge Health Insurance Grouping \\ %placeholder
+		\normalsize Optional  \\
+}
+\selectlanguage{english}
+\usepackage{authblk}
+\author[1]{Haris Ahmed Siddiqui}
+\author[2]{Moaaz Tameer Islam}
+\author[3]{Muhammad Chaudry}
+\affil[1]{Arizona State University}
+\affil[2]{National University of Sciences \& Technology}
+\affil[3]{Anglia Ruskin University}
+
+\begin{document}
+\maketitle
+
+\tableofcontents%need to see how to put that as 1 col
+
+\begin{abstract}
+Your abstract will get published whether or not your team wins the challenge, so make sure to do a good job! It should reflect the objectives, methodology and findings of the research project. When writing your abstract, choose the right (amount of) words to convey your information. Avoid long sentences and long-winded explanations as they could make the reader lose focus. The order of your writing is also important. Maintain a logical order to your writing so that the reader links each aspect of your work coherently. Introduction/Background: Explains what problem the study examined and why. You may provide some background to the project, and the motivation behind it. Materials and Methods: Describes the data sources used and methodologies adopted for the data analysis. Key Findings/Results: Outlines the discoveries/what was observed from the analysis. When describing your results, strive to focus on the main finding(s), and list no more than two or three points. Conclusion: Provide a general interpretation of the results, specifying what is new/innovative of your project, and give any important recommendation for future research.Once you've written these, delete the keywords, edit for flow, and you have your abstract.
+\end{abstract} \\ 
+\\ 
+{\textbf{Keywords} \\
+Health Economics, Medical Insurance, Unsupervised Machine Learning, Gaussian Mixture Model}
+
+\section{Introduction}
+Before we get to the actual introduction, welcome to Overleaf, as well as \LaTeX itself! Although \LaTeX certainly has its quirks, we hope that by contrasting the template you see here with the compiled document on the right side, you can get an intuitive sense of how to work with it. Anyhow, let's begin!
+
+Another thing before the introduction; here, I'm going attach a citation to this sentence \cite{ReferenceName}. Scroll on down to the bibliography section of the \LaTeX\ code if you'd like to see the other end of the built-in references system. The numbering is all handled in-house -- you just have to assign each reference a key, and Overleaf takes care of the rest!
+
+On with the actual introduction. Here is where you'd introduce the context surrounding your study. What led you to the question you ended up asking? Why is it relevant? Which fields of science is your question based around?
+
+You could also potentially discuss why Altmetrics themselves are relevant and were important in answering the question your team conceptualized, especially in comparison to using more traditional metrics such as citations.
+
+While the structure of the previous parts of the introduction can be relatively variable, you must make sure to provide a brief overview of the study itself, and the methods you used to accomplish it. Obviously, excessive detail is not necessary (that's what the next section is for). Lastly, be sure to make mention of the potential implications of your findings, but once again remember that you'll be going into more detail about that in the discussion.
+
+Also, please do remember that the STEM Fellowship Journal is an open access journal, which means that the full final papers of previous BDC winners are a simple Google search away!
+
+\section{Materials \& Methods}
+
+\subsection{Sourcing the dataset}
+The dataset is originally from the famous Machine Learning with R book, by Brett Lantz. This dataset has been in public domain, both on \href{https://github.com/stedy/Machine-Learning-with-R-datasets}{github} and \href{https://www.kaggle.com/datasets/mirichoi0218/insurance}{kaggle} for some years now.
+\subsection{Data preprocessing}
+The dataset was in a comma-seperated value (CSV) format which was imported into a Jupyter notebook using the pandas library. The non numerical columns were converted using OneHotEncoder to make them into multiple binary columns instead. Next all the columns had to be normalised with the help of StandardScalar.
+\subsection{Model selection and evaluation}
+All the models made use of unsupervised learning algorithms. Evaluation and selection of clusters are subjective to each individual, as there is no reliable criteria to judge off of. The data was processed through KMeans, DBSCAN, HDBSCAN and GMM models.
+
+	All the models were visualised on scatter plots, to better judge the quality of clusters. Gaussian Mixture Model (GMM) was selected as the best clustering model, followed closely by HDBSCAN. The other two performed poorly.
+    
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/knn.png}
+    \caption{\\Clusters formed by KNN\\}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/dbscan.png}
+    \caption{\\Clusters formed by DBSCAN\\}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/GMM.png}
+    \caption{\\Clusters formed by GMM\\}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/hdbscan.png}
+    \caption{\\Clusters formed by HDBSCAN\\}
+\end{figure}
+ #PUT THE IMAGES HERE WITH CAPTIONS PLS CHAUDRY
+
+\subsection{Assessing feature importance}
+Feature importance was calculated using a logistic regression model. After fitting the data, the absolute value of the coefficient for each scaled feature was directly used to judge it's importance.
+
+\section{Results}
+
+\comment{
+The results section is probably next easiest to write after the Methods section, since it essentially boils down to presenting your data. If anything, the production of good, high quality figures is the most important and potentially time-consuming part of this. However, make sure to not analyze any of your results here! All of that belongs in the discussion.
+
+Including figures into \LaTeX\ can seem intimidating at first, but Overleaf makes it easy: simply click the 'Project' button above, select 'Files', and upload away from your computer. Then, insert the file name into the appropriate section of the code below.  Figure 1  shows the output of such code. A pretty good guide to formatting figures can be found at \url{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures}.
+
+{\scriptsize
+\begin{verbatim}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{test.png}
+    \caption{Hello!}
+\end{figure}
+\end{verbatim}
+}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/agevcharges.png}
+    \caption{Notice how \LaTeX\ automatically numbers this figure.}
+\end{figure}}
+\\\\\\\\\\\\\\\
+\subsection{What factors affected charges the most?}
+\paragraph{}
+The most interesting feature in relation to charges was age. When plotting the distribution of charges by age, the charges split into three very distinct groups.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/agevcharges.png}
+    \caption{\\\\}
+\end{figure}
+
+\paragraph{}
+As the age increases, the charge in each group increases, and the older people from the previous group  intersect with younger people from the next, more expensive, group. Because of this, without factoring in age it is easy to miss the clear separation between these groups.
+
+\paragraph{}
+Clustering models can be used to obtain labels for the different groups, and quantify the differences between them. The Gaussian Mixture Model technique was used to create the clusters, as is shown in the following graph:
+\paragraph{}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/agevchargesGMM.png}
+    \caption{\\\\}
+\end{figure} 
+\paragraph{}
+The Lowest charge group is band A, the middle is band B and the highest charge is band C.
+
+
+\subsection{Cluster analysis}
+\paragraph{}
+The differences in charges between the bands is significant, as is shown in the figure below.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/bandcharges.png}
+    \caption{\\\\}
+\end{figure} 
+
+Band A has a median charge of approximately \$7,500, while B has a median of \$20,00 and C \$40,000. 
+
+
+\paragraph{}
+The first feature investigated is BMI. Below is a box plot of BMI for all bands.
+\begin{figure}[H]
+  \centering 
+  \includegraphics[width=0.5\textwidth]{figures/clusterbmi.png}
+    \caption{\\\\}
+\end{figure} 
+
+It is interesting to see that the BMI of band B is less than band A, but the following figure of BMI by bands split by smoking gives a more complete picture(?);
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/clusterbmi_smoking.png}
+    \caption{\\\\}
+\end{figure}
+
+The average BMI increases with the bands in the non-smoking group, while in the smoking group band B has a significantly lower average BMI.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/smokesbyband.png}
+    \caption{\\\\}
+\end{figure}
+The figure above shows the ratio of smokers to non-smokers by band. It can be observed that the higher bands have a much higher proportion of smokers to non-smokers.
+
+Finally, below is a table of the most important features, found by creating a a logistic regression model, and the values being the coefficients of the features.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/mostimportantfeats.PNG}
+    \caption{\\\\}
+\end{figure} 
+
+\section{Discussion}
+\comment{
+And here is the 'meat' of the paper, so to speak. This is where you interpret your results, pointing out interesting trends within your data and how they relate to your initial hypothesis. This is also the place to justify your methodology, if you're so inclined (i.e. Why did you specifically use a certain statistical test over another? Why this tool over that tool?). Lastly, you're going to want to discuss potential sources of error. Make sure to make explicit reference to figures/tables when discussing your data; it can be helpful to walk the reader through your own personal interpretation of each figure in order. See Figure \ref{fig:python-logo} for a picture of the Python logo. Although we recommend looking at past winning papers over at the STEM Fellowship Journal's website anyways, referring to those papers might prove most helpful when it comes to writing your discussion.}
+\subsection{Clustering}
+\paragraph{}
+Several techniques where used to create the clusters for the different bands. Initially KMeans was used, but it performed poorly as it is reliant on the data being in spherical groups, while this
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/python.jpeg}
+  \caption{This is the Python logo.}
+  \label{fig:python-logo}
+\end{figure}
+
+\section*{Conclusions}
+What are the long-term implications of your findings? Wrap up your discussion succinctly while pointing out the significance of your work as well as it what it means for the fields you examined as much as possible. Lastly, suggest ideas for future studies that could build on your work, and justify why they might be useful. Otherwise, you're all done!
+
+\section*{Acknowledgements}
+Anyone to thank/credit for helping your team along the way? This is the place to do it!
+
+\bibliography{bibliography}
+\end{document}
